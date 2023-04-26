@@ -9,8 +9,9 @@ pipeline {
 		registryUrl = 'devops9.azurecr.io'
 		Repo='loan-calculator'
 		registryCredential='AZURE-ECR'
-		VERSION="${'v' + BUILD_ID}"
-		IMAGE_TAG=$"{registryUrl + '/' + Repo + ':' + VERSION}"
+		TYPE="RELEASE"
+		VERSION="${'1.0.' + BUILD_ID + '-' + TYPE }"
+		IMAGE_TAG="${registryUrl + '/' + Repo + ':' + VERSION}"
         dockerImage = ''
     }
     
