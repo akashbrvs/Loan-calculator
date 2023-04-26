@@ -6,11 +6,11 @@ pipeline {
         }
      
         environment {
-		
 		registryUrl = 'devops9.azurecr.io'
 		Repo='loan-calculator'
 		registryCredential='AZURE-ECR'
-		
+		VERSION="${'v' + BUILD_ID}"
+		IMAGE_TAG=$"{registryUrl + '/' + Repo + ':' + VERSION}"
         dockerImage = ''
     }
     
@@ -26,8 +26,6 @@ pipeline {
             steps {
                 
                 script {
-		    env.VERSION="${'v' + BUILD_ID}"
-		    env.IMAGE_TAG=$"{registryUrl + '/' + Repo + ':' + VERSION }"
                     dockerImage = docker.build IMAGE_TAG
 					 
                 }
